@@ -18,14 +18,16 @@ The product intentionally excludes hospital locators, emergency locators, GPS, l
 
 Prerequisites: Node.js 20+, npm, and MySQL 8+.
 
-1. Create the database: `mysql -u root -p < database/schema.sql`
+1. Install and start MySQL 8+, then create the database: `mysql -u root -p < database/schema.sql`
 2. Seed demo content: `mysql -u root -p janani < database/seed.sql`
-3. Copy `.env.example` to `backend/.env` and set MySQL values plus a long JWT secret.
+3. Copy `backend/.env.example` to `backend/.env` and set MySQL values plus a long JWT secret.
 4. Install dependencies: `npm install` then `npm run install:all`
 5. Start both apps: `npm run dev`
 6. Open `http://localhost:5173`
 
 The frontend also works in demo mode without the backend: its navigation and demo login flow are available for UI review.
+
+To verify the backend after MySQL is running, open `http://localhost:5000/api/health`. A healthy response includes `"database":"connected"`; without MySQL it intentionally returns HTTP 503 with `"database":"unavailable"`.
 
 ## API overview
 
