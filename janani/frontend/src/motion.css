@@ -1,0 +1,582 @@
+/* Motion layer for page entrance, depth, and gentle interaction. */
+@keyframes janani-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes janani-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes janani-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-18px, 14px) scale(1.04); }
+}
+
+@keyframes janani-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(188, 125, 98, 0.28); }
+  50% { box-shadow: 0 0 0 9px rgba(188, 125, 98, 0); }
+}
+
+@keyframes janani-depth-in {
+  from { opacity: 0; transform: perspective(1100px) translateY(24px) rotateX(3deg); }
+  to { opacity: 1; transform: perspective(1100px) translateY(0) rotateX(0); }
+}
+
+@keyframes janani-soft-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg); }
+  50% { transform: translate3d(0, -5px, 0) rotateX(.5deg) rotateY(-.5deg); }
+}
+
+.app-shell > * {
+  animation: janani-rise 0.65s both;
+}
+
+.app-shell > main > .hero {
+  animation-delay: 0.08s;
+}
+
+.app-shell > main > .intro-band {
+  animation-delay: 0.16s;
+}
+
+.hero-copy > * {
+  animation: janani-rise 0.7s both;
+}
+
+.hero-copy > :nth-child(1) { animation-delay: 0.2s; }
+.hero-copy > :nth-child(2) { animation-delay: 0.28s; }
+.hero-copy > :nth-child(3) { animation-delay: 0.36s; }
+.hero-copy > :nth-child(4) { animation-delay: 0.44s; }
+.hero-copy > :nth-child(5) { animation-delay: 0.52s; }
+
+.hero-art {
+  animation: janani-rise 0.85s 0.22s both;
+}
+
+.hero-art .sun-disc,
+.hero-art .hero-orbit {
+  animation: janani-drift 10s ease-in-out infinite;
+}
+
+.hero-art .figure {
+  animation: janani-float 5s ease-in-out infinite;
+  transform: translate3d(calc(var(--pointer-x) * 0.5), calc(var(--pointer-y) * 0.5), 0);
+  transition: transform 450ms cubic-bezier(.2,.8,.2,1);
+}
+
+.hero-art .art-note {
+  animation: janani-float 4s ease-in-out infinite;
+}
+
+.hero-art .note-bottom {
+  animation-delay: 1.2s;
+}
+
+.module-card {
+  animation: janani-rise 0.6s both;
+}
+
+.module-card:nth-child(1) { animation-delay: 0.08s; }
+.module-card:nth-child(2) { animation-delay: 0.14s; }
+.module-card:nth-child(3) { animation-delay: 0.2s; }
+.module-card:nth-child(4) { animation-delay: 0.26s; }
+.module-card:nth-child(5) { animation-delay: 0.32s; }
+.module-card:nth-child(6) { animation-delay: 0.38s; }
+
+.primary-button:hover,
+.light-button:hover,
+.outline-button:hover {
+  transform: translateY(-3px);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.primary-button:hover {
+  box-shadow: 0 10px 22px rgba(49, 92, 80, 0.24);
+}
+
+.icon-button i {
+  animation: janani-pulse 2.2s infinite;
+}
+
+.dashboard-main > .dash-header,
+.dashboard-main > .dash-content {
+  animation: janani-rise 0.6s both;
+}
+
+.dashboard-main > .dash-content { animation-delay: 0.12s; }
+
+/* Keep the existing dashboard styling while giving each view a shared depth treatment. */
+.dashboard-layout {
+  perspective: 1400px;
+}
+
+.dashboard-main {
+  transform-style: preserve-3d;
+}
+
+.dashboard-main > .dash-header {
+  transform-origin: center top;
+}
+
+.dashboard-main > .dash-content {
+  transform-style: preserve-3d;
+}
+
+.welcome-panel,
+.module-hero,
+.login-card {
+  animation: janani-depth-in .7s .14s both;
+  transform-style: preserve-3d;
+  transition: transform 280ms ease, box-shadow 280ms ease;
+}
+
+.welcome-panel:hover,
+.module-hero:hover,
+.login-card:hover {
+  transform: perspective(1100px) translateY(-4px) rotateX(1deg) rotateY(-.7deg) translateZ(8px);
+}
+
+.appointment-card,
+.guidance-card,
+.quick-action,
+.notice-card {
+  transform-style: preserve-3d;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.appointment-card:hover,
+.guidance-card:hover,
+.quick-action:hover,
+.notice-card:hover {
+  transform: translate3d(0, -4px, 10px) rotateX(1deg);
+}
+
+.appointment-card { animation: janani-depth-in .55s .24s both; }
+.guidance-card { animation: janani-depth-in .55s .32s both; }
+.quick-action:nth-of-type(1) { animation: janani-depth-in .55s .28s both; }
+.quick-action:nth-of-type(2) { animation: janani-depth-in .55s .36s both; }
+.notice-card { animation: janani-depth-in .55s .44s both; }
+
+.sidebar {
+  transform-style: preserve-3d;
+}
+
+.sidebar .brand,
+.sidebar .profile-mini,
+.sidebar .side-nav,
+.sidebar .side-bottom {
+  animation: janani-rise .5s both;
+}
+
+.sidebar .profile-mini { animation-delay: .08s; }
+.sidebar .side-nav { animation-delay: .16s; }
+.sidebar .side-bottom { animation-delay: .24s; }
+
+.side-link {
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.side-link:hover {
+  transform: translate3d(4px, -1px, 6px);
+}
+
+.login-card .login-mark {
+  animation: janani-soft-float 4s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.login-card label,
+.login-card .primary-button,
+.login-card .quiet-button {
+  animation: janani-rise .45s both;
+}
+
+.login-card label:nth-of-type(1) { animation-delay: .18s; }
+.login-card label:nth-of-type(2) { animation-delay: .24s; }
+.login-card label:nth-of-type(3) { animation-delay: .3s; }
+.login-card .primary-button { animation-delay: .36s; }
+.login-card .quiet-button { animation-delay: .42s; }
+
+.dashboard-main .dash-user {
+  transition: transform 220ms ease;
+}
+
+.dashboard-main .dash-user:hover {
+  transform: translateZ(10px) rotateY(8deg);
+}
+
+.auth-gate {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 5vw;
+  padding: 42px 7vw;
+  position: relative;
+  overflow: hidden;
+  background: #f7f5ef;
+}
+
+.auth-gate::before,
+.auth-gate::after {
+  position: absolute;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border: 2px solid #e4bfa7;
+  border-radius: 42% 58% 55% 45%;
+  color: #bc8065;
+  font: 31px Georgia, serif;
+  opacity: .72;
+  transform: rotate(-12deg);
+  content: '♥';
+  animation: janani-soft-float 5s ease-in-out infinite;
+}
+
+.auth-gate::before { left: 2.5vw; top: 16%; background: #fff0e5; }
+.auth-gate::after { right: 2.5vw; bottom: 11%; background: #f0e6bd; content: '✦'; animation-delay: 1.3s; }
+
+.auth-language {
+  position: absolute;
+  top: 28px;
+  right: 7vw;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #688077;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+.auth-language select,
+.pregnancy-month-form select {
+  border: 1px solid #c8d5cc;
+  border-radius: 4px;
+  background: #fffdf7;
+  color: #315c50;
+  padding: 9px 12px;
+}
+
+.auth-visual {
+  min-height: 570px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 52% 48% 8px 8px;
+  background: #e3ece3;
+  box-shadow: 24px 26px 0 #c7d9ca;
+  perspective: 1000px;
+  animation: janani-depth-in .9s both;
+}
+
+.auth-visual::before,
+.auth-visual::after {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 2px solid rgba(49, 92, 80, .2);
+  border-radius: 50%;
+  background: rgba(255, 253, 247, .82);
+  color: #648276;
+  font-size: 25px;
+  box-shadow: 0 9px 20px rgba(49, 92, 80, .12);
+  animation: janani-soft-float 4.2s ease-in-out infinite;
+}
+
+.auth-visual::before { left: 8%; bottom: 19%; content: '✦'; }
+.auth-visual::after { right: 8%; top: 34%; content: '♡'; animation-delay: .8s; }
+
+.auth-sun {
+  position: absolute;
+  width: 370px;
+  height: 370px;
+  left: 19%;
+  top: 15%;
+  border-radius: 50%;
+  background: #efdca1;
+}
+
+.auth-orbit {
+  position: absolute;
+  inset: 4%;
+  border: 1px solid rgba(255, 255, 255, .82);
+  border-radius: 50%;
+  animation: janani-drift 11s ease-in-out infinite;
+}
+
+.auth-mother {
+  position: absolute;
+  left: 36%;
+  bottom: 0;
+  width: 190px;
+  height: 470px;
+  transform-style: preserve-3d;
+  animation: janani-soft-float 5s ease-in-out infinite;
+}
+
+.auth-head {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  left: 44px;
+  width: 106px;
+  height: 112px;
+  border-radius: 48%;
+  background: #b56e50;
+}
+
+.auth-hair {
+  position: absolute;
+  top: -5px;
+  left: 28px;
+  width: 130px;
+  height: 180px;
+  border-radius: 52% 55% 36% 40%;
+  background: #3e5145;
+}
+
+.auth-body {
+  position: absolute;
+  bottom: -10px;
+  left: 28px;
+  width: 145px;
+  height: 312px;
+  border-radius: 75px 75px 15px 15px;
+  background: #7f9c8e;
+}
+
+.auth-bump {
+  position: absolute;
+  z-index: 2;
+  bottom: 84px;
+  left: 78px;
+  width: 142px;
+  height: 138px;
+  border-radius: 50%;
+  background: #789789;
+}
+
+.auth-arm {
+  position: absolute;
+  z-index: 3;
+  bottom: 112px;
+  left: 139px;
+  width: 22px;
+  height: 156px;
+  border-radius: 20px;
+  transform: rotate(-23deg);
+  background: #b56e50;
+}
+
+.auth-floating-note,
+.auth-floating-pill {
+  position: absolute;
+  z-index: 3;
+  background: #fffdf7;
+  color: #3d554d;
+  box-shadow: 0 8px 25px #315c5020;
+  font-size: 11px;
+}
+
+.auth-floating-note {
+  top: 11%;
+  right: 7%;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding: 13px 16px;
+  line-height: 1.35;
+}
+
+.auth-floating-note svg { color: #c27962; }
+.auth-floating-pill { right: 8%; bottom: 9%; padding: 10px 15px; border-radius: 25px; letter-spacing: 1.5px; text-transform: uppercase; }
+
+.auth-panel {
+  z-index: 2;
+  position: relative;
+  max-width: 450px;
+  padding: 38px;
+  background: rgba(255, 253, 247, .86);
+  box-shadow: 14px 15px 0 rgba(220, 233, 223, .85);
+  animation: janani-depth-in .75s .12s both;
+}
+
+.auth-brand-lockup {
+  position: absolute;
+  top: 34px;
+  left: 38px;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 12px;
+  color: #315c50;
+}
+
+.auth-brand-mark {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(49, 92, 80, .25);
+  border-radius: 50%;
+  background: rgba(255, 253, 247, .7);
+  font: 28px Georgia, serif;
+}
+
+.auth-brand-name {
+  font-size: clamp(32px, 4vw, 54px);
+  font-weight: 800;
+  letter-spacing: clamp(8px, 1.1vw, 16px);
+}
+
+.auth-brand-lockup small {
+  color: #6b8178;
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.auth-methods {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.auth-methods button {
+  display: grid;
+  grid-template-columns: 34px 1fr 20px;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #dbe4dc;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .58);
+  text-align: left;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.auth-methods button:hover,
+.auth-methods button.selected {
+  border-color: #7ca38f;
+  background: #f0f7f0;
+  transform: translateX(3px);
+}
+
+.method-icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: #dcebe0;
+  color: #315c50;
+  font-weight: 800;
+}
+
+.auth-methods strong,
+.auth-methods small { display: block; }
+.auth-methods strong { color: #315c50; font-size: 12px; }
+.auth-methods small { margin-top: 3px; color: #809088; font-size: 10px; }
+.method-check { color: transparent; font-weight: 800; }
+.selected .method-check { color: #4d8a6d; }
+
+.auth-panel h1 {
+  margin: 16px 0 10px;
+  color: #263735;
+  font: 500 42px/1.05 Fraunces, Georgia, serif;
+}
+
+.auth-panel > p { color: #6e7b76; line-height: 1.6; margin: 0 0 22px; }
+.auth-tabs { display: flex; gap: 22px; border-bottom: 1px solid #dfe3dc; margin-bottom: 20px; }
+.auth-tabs button { padding: 10px 0; background: none; color: #849088; font-size: 13px; }
+.auth-tabs button.active { color: #315c50; border-bottom: 2px solid #315c50; font-weight: 700; }
+.auth-panel label { display: block; margin: 14px 0; color: #5f7069; font-size: 12px; }
+.auth-panel input { display: block; width: 100%; margin-top: 7px; padding: 13px; border: 1px solid #ccd8cf; border-radius: 3px; background: #fff; }
+.auth-otp-hint { color: #718178; font-size: 12px; }
+.auth-secondary { margin: 12px 12px 0 0; }
+.care-list { display: grid; gap: 12px; margin-top: 22px; }
+.care-list > div { display: grid; grid-template-columns: 24px 1fr; gap: 5px 10px; padding: 16px; border: 1px solid #e2e8e1; background: #fffdf7; border-radius: 8px; box-shadow: 0 8px 18px rgba(49, 92, 80, .06); }
+.care-list svg { grid-row: span 2; color: #648f7d; }
+.care-list strong, .care-list small { display: block; }
+.care-list strong { color: #315c50; font-size: 13px; }
+.care-list small { color: #74837b; font-size: 11px; line-height: 1.5; }
+.care-list .outline-button { grid-column: 2; justify-self: start; margin-top: 8px; padding: 8px 12px; font-size: 11px; }
+.pregnancy-month-form label { margin: 16px 0; display: block; color: #687771; font-size: 12px; }
+.pregnancy-month-form select { display: block; margin-top: 8px; min-width: 210px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero-art .figure,
+  .hero-art,
+  .ambient-orb,
+  .hero-grid {
+    transform: none !important;
+  }
+
+  .welcome-panel,
+  .module-hero,
+  .login-card,
+  .appointment-card,
+  .guidance-card,
+  .quick-action,
+  .notice-card,
+  .side-link {
+    transform: none !important;
+  }
+
+  .auth-visual,
+  .auth-mother,
+  .auth-panel,
+  .auth-orbit {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 850px) {
+  .auth-gate { grid-template-columns: 1fr; padding: 72px 24px 35px; }
+  .auth-visual { min-height: 400px; order: 2; }
+  .auth-panel { order: 1; max-width: none; }
+}
+
+.auth-panel::after {
+  position: absolute;
+  right: -30px;
+  bottom: -28px;
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: #f1c5ae;
+  color: #8e5a49;
+  content: '✿';
+  font-size: 27px;
+  box-shadow: 8px 8px 0 #e4d8b1;
+  transform: rotate(12deg);
+}
+
+@media (max-width: 560px) {
+  .auth-gate { padding: 70px 18px 24px; }
+  .auth-panel { padding: 25px 20px; }
+  .auth-panel h1 { font-size: 34px; }
+  .auth-visual { min-height: 340px; }
+  .auth-mother { transform: scale(.76); transform-origin: bottom center; }
+  .auth-language { right: 18px; }
+}

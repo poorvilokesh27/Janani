@@ -1,0 +1,247 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+  ASHA
+  HOSPITAL
+}
+enum Language {
+  en
+  kn
+  hi
+}
+enum ReminderStatus {
+  PENDING
+  SENT
+  CANCELLED
+}
+
+model User {
+  id String @id @default(cuid())
+  mobile String? @unique
+  email String? @unique
+  passwordHash String?
+  name String?
+  role UserRole @default(USER)
+  language Language @default(en)
+  deletedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Session {
+  id String @id @default(cuid())
+  userId String
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime @default(now())
+  @@index([userId])
+}
+model RefreshToken {
+  id String @id @default(cuid())
+  userId String
+  tokenHash String @unique
+  expiresAt DateTime
+  rotatedAt DateTime?
+  createdAt DateTime @default(now())
+  @@index([userId])
+}
+model Consent {
+  id String @id @default(cuid())
+  userId String
+  version String
+  grantedAt DateTime @default(now())
+  revokedAt DateTime?
+  @@index([userId])
+}
+model Pregnancy {
+  id String @id @default(cuid())
+  userId String
+  lmpDate DateTime
+  dueDate DateTime
+  endedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([userId])
+}
+model ReminderTemplate {
+  id String @id @default(cuid())
+  title String
+  description String
+  weeks Int
+  active Boolean @default(true)
+  createdAt DateTime @default(now())
+}
+model Reminder {
+  id String @id @default(cuid())
+  userId String
+  templateId String?
+  dueAt DateTime
+  status ReminderStatus @default(PENDING)
+  createdAt DateTime @default(now())
+  @@index([userId, dueAt])
+}
+model Hospital {
+  id String @id @default(cuid())
+  name String
+  latitude Decimal @db.Decimal(10,7)
+  longitude Decimal @db.Decimal(10,7)
+  phone String?
+  deletedAt DateTime?
+  createdAt DateTime @default(now())
+  @@index([latitude, longitude])
+}
+model Anganwadi {
+  id String @id @default(cuid())
+  name String
+  latitude Decimal @db.Decimal(10,7)
+  longitude Decimal @db.Decimal(10,7)
+  phone String?
+  createdAt DateTime @default(now())
+  @@index([latitude, longitude])
+}
+model AshaWorker {
+  id String @id @default(cuid())
+  name String
+  mobile String @unique
+  area String?
+  active Boolean @default(true)
+  createdAt DateTime @default(now())
+}
+model ChatSession {
+  id String @id @default(cuid())
+  userId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([userId])
+}
+model ChatMessage {
+  id String @id @default(cuid())
+  sessionId String
+  role String
+  content String @db.Text
+  createdAt DateTime @default(now())
+  @@index([sessionId])
+}
+model BodyLog {
+  id String @id @default(cuid())
+  userId String
+  payload String @db.Text
+  recordedAt DateTime
+  createdAt DateTime @default(now())
+  @@index([userId, recordedAt])
+}
+model CycleLog {
+  id String @id @default(cuid())
+  userId String
+  payload String @db.Text
+  cycleDate DateTime
+  createdAt DateTime @default(now())
+  @@index([userId, cycleDate])
+}
+model Scheme {
+  id String @id @default(cuid())
+  name String
+  description String @db.Text
+  active Boolean @default(true)
+  createdAt DateTime @default(now())
+}
+model WellnessContent {
+  id String @id @default(cuid())
+  slug String @unique
+  category String @default("general")
+  title String
+  summary String?
+  content String @db.Text
+  safetyNote String? @db.Text
+  language Language @default(en)
+  active Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([category, language, active])
+}
+model ReproTopic {
+  id String @id @default(cuid())
+  slug String @unique
+  title String
+  content String @db.Text
+  language Language @default(en)
+  active Boolean @default(true)
+}
+model EmergencySession {
+  id String @id @default(cuid())
+  userId String
+  hospitalId String?
+  startedAt DateTime @default(now())
+  endedAt DateTime?
+  @@index([userId])
+}
+model EmergencyLocationPing {
+  id String @id @default(cuid())
+  sessionId String
+  latitude Decimal @db.Decimal(10,7)
+  longitude Decimal @db.Decimal(10,7)
+  createdAt DateTime @default(now())
+  @@index([sessionId, createdAt])
+}
+model TrackerMonth {
+  id String @id @default(cuid())
+  month Int
+  title String
+  content String @db.Text
+  language Language @default(en)
+  @@unique([month, language])
+}
+model Appointment {
+  id String @id @default(cuid())
+  userId String
+  scheduledAt DateTime
+  notes String?
+  createdAt DateTime @default(now())
+  @@index([userId, scheduledAt])
+}
+model Notification {
+  id String @id @default(cuid())
+  userId String
+  type String
+  payload String @db.Text
+  sentAt DateTime?
+  createdAt DateTime @default(now())
+  @@index([userId])
+}
+model AuditLog {
+  id String @id @default(cuid())
+  userId String?
+  action String
+  metadata String? @db.Text
+  createdAt DateTime @default(now())
+  @@index([userId, createdAt])
+}
+model OtpChallenge {
+  id String @id @default(cuid())
+  mobile String?
+  email String?
+  codeHash String
+  expiresAt DateTime
+  attempts Int @default(0)
+  consumedAt DateTime?
+  createdAt DateTime @default(now())
+  @@index([mobile, expiresAt])
+  @@index([email, expiresAt])
+}
+model ContentTranslation {
+  id String @id @default(cuid())
+  contentType String
+  contentId String
+  language Language
+  title String
+  body String @db.Text
+  @@unique([contentType, contentId, language])
+}
