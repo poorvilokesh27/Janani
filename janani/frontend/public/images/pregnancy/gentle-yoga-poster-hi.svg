@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+  <title id="title">हल्का गर्भावस्था योग पोस्टर</title>
+  <desc id="desc">बैठकर साँस लेने का हल्का अभ्यास और सुरक्षा सूचना।</desc>
+  <defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#dce9df"/><stop offset="1" stop-color="#f1c5ae"/></linearGradient></defs>
+  <rect width="720" height="480" rx="28" fill="url(#bg)"/><circle cx="154" cy="118" r="52" fill="#f6e8b0"/>
+  <path d="M150 257c45-67 111-70 139 0 14 35 20 79 20 111H122c0-32 9-76 28-111Z" fill="#315c50"/><circle cx="220" cy="178" r="31" fill="#f3c7ad"/>
+  <path d="M187 251c-46 24-65 55-82 103M252 251c49 24 68 55 86 103M185 316c-43 6-66 22-82 42M255 316c43 6 66 22 82 42" fill="none" stroke="#315c50" stroke-linecap="round" stroke-width="18"/>
+  <path d="M220 209v92M185 229c22 24 48 24 70 0" fill="none" stroke="#dce9df" stroke-linecap="round" stroke-width="9"/><path d="M169 177c18-34 75-39 103 0" fill="none" stroke="#315c50" stroke-linecap="round" stroke-width="13"/>
+  <text x="385" y="125" fill="#263735" font-family="Arial,sans-serif" font-size="32" font-weight="700">हल्का योग</text><text x="385" y="174" fill="#315c50" font-family="Arial,sans-serif" font-size="23">साँस • हल्का खिंचाव • आराम</text>
+  <text x="385" y="238" fill="#52635c" font-family="Arial,sans-serif" font-size="19">आरामदायक गति चुनें।</text><text x="385" y="275" fill="#52635c" font-family="Arial,sans-serif" font-size="18">दर्द, रक्तस्राव या चक्कर आए तो</text><text x="385" y="307" fill="#52635c" font-family="Arial,sans-serif" font-size="18">रुकें और स्वास्थ्यकर्मी से पूछें।</text>
+  <rect x="385" y="350" width="265" height="58" rx="16" fill="#fffdf7" opacity=".8"/><text x="407" y="386" fill="#7a3522" font-family="Arial,sans-serif" font-size="17" font-weight="700">पहले स्वास्थ्यकर्मी से पूछें</text>
+</svg>

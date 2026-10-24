@@ -13,6 +13,7 @@ import { createPregnancyRouter } from './modules/pregnancy/routes';
 import { createWellnessRouter } from './modules/wellness/routes';
 import { createUsersRouter } from './modules/users/routes';
 import { createChatRouter } from './modules/chat/routes';
+import { createCycleRouter } from './modules/cycle/routes';
 
 export interface AppDependencies {
   prisma?: PrismaClient;
@@ -53,6 +54,7 @@ export function createApp(dependencies: AppDependencies = {}) {
   if (prisma) app.use('/api/wellness', createWellnessRouter(prisma));
   if (prisma) app.use('/api/users', createUsersRouter(prisma));
   if (prisma) app.use('/api/chat', createChatRouter());
+  if (prisma) app.use('/api/cycles', createCycleRouter(prisma));
 
   app.use((_req, res) => {
     res.status(404).json({ error: 'Not found', requestId: res.locals.requestId });

@@ -27,6 +27,8 @@ Prerequisites: Node.js 20+, npm, and MySQL 8+.
 
 The frontend also works in demo mode without the backend: its navigation and demo-account flow are available for UI review. The real login form uses `VITE_API_URL` when the API is available.
 
+For the grounded JANANI chatbot, create a valid Gemini API key in [Google AI Studio](https://aistudio.google.com/apikey), set `GEMINI_API_KEY` in `backend/.env`, and restart the backend. `GEMINI_MODEL` defaults to `gemini-3.8-flash` and can be changed to another model enabled for the key. If chat reports that Google rejected the credentials, replace the key rather than changing frontend code; do not include quotes or whitespace around the value. The key must remain in the backend environment and must never be placed in frontend code. The chatbot is prompt-grounded in JANANI's pregnancy, postpartum, newborn-care, menstrual, fertility, contraception, PCOS/PCOD, and reproductive-health scope. This is not model training or a substitute for clinical review: it provides general education, refuses diagnosis and medication instructions, and routes possible emergencies to 112 or a hospital.
+
 To verify the backend after MySQL is running, open `http://localhost:5000/api/health`. A healthy response includes `"database":"connected"`; without MySQL it intentionally returns HTTP 503 with `"database":"unavailable"`.
 
 If `/api/health` returns `"status":"misconfigured"`, copy `backend/.env.example` to `backend/.env` and replace the database values and `JWT_SECRET`. Login is intentionally blocked until the API can verify the account against MySQL; the frontend no longer grants an unverified demo login from the login form.
@@ -54,7 +56,7 @@ If `/api/health` returns `"status":"misconfigured"`, copy `backend/.env.example`
 
 ## Safety and data notes
 
-Health content is general educational information and should not replace a qualified healthcare professional. Demo scheme and facility records are clearly marked as unverified and must be replaced or verified before production use. SMS reminders are stored as `queued` only when no provider is configured; they are never reported as delivered. Photo search and live location sharing are intentionally not claimed because the current UI and provider configuration do not support them. Emergency access is an explicit, authenticated ninth-month workflow and does not contact emergency services or continuously track location. Secrets and database credentials belong in environment variables and are never exposed to the frontend.
+Health content is general educational information and should not replace a qualified healthcare professional. The chat can use Gemini when `GEMINI_API_KEY` is configured in `backend/.env`; without it, the API returns a safe generic fallback. The model is instructed not to diagnose or recommend medicines, and emergency and medication questions use fixed safety replies. Demo scheme and facility records are clearly marked as unverified and must be replaced or verified before production use. SMS reminders are stored as `queued` only when no provider is configured; they are never reported as delivered. Photo search and live location sharing are intentionally not claimed because the current UI and provider configuration do not support them. Emergency access is an explicit, authenticated ninth-month workflow and does not contact emergency services or continuously track location. Secrets and database credentials belong in environment variables and are never exposed to the frontend.
 
 ## Testing and API examples
 

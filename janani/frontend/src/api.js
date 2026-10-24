@@ -11,6 +11,12 @@ export async function apiRequest(path, options = {}) {
     throw new Error('JANANI server is unavailable. Start the backend and confirm MySQL is running.');
   }
   const body = await response.json().catch(() => ({}));
+  if (response.status === 401) {
+    window.localStorage.removeItem('janani_token');
+    window.localStorage.removeItem('janani_user');
+    window.dispatchEvent(new Event('janani-auth-expired'));
+    throw new Error('Your session expired. Please sign in again.');
+  }
   if (!response.ok) throw new Error(body.message || `Request failed (${response.status})`);
   return body;
 }
@@ -43,4 +49,9 @@ export const savePregnancyMonth = (month) => apiRequest('/pregnancy', {
 export const saveProfileMobile = (mobile) => apiRequest('/users/mobile', {
   method: 'PUT',
   body: JSON.stringify({ mobile: normalizeIndianMobile(mobile) }),
+});
+export const getCycleLogs = () => apiRequest('/cycles');
+export const saveCycleLog = (cycleDate, cycleLength, notes) => apiRequest('/cycles', {
+  method: 'POST',
+  body: JSON.stringify({ cycleDate, cycleLength: Number(cycleLength), notes }),
 });

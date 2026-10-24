@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+  <title id="title">Gentle pregnancy movement poster</title>
+  <desc id="desc">An original illustrated poster showing a seated breathing exercise with simple safety reminders.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#dce9df"/>
+      <stop offset="1" stop-color="#f1c5ae"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="480" rx="28" fill="url(#bg)"/>
+  <circle cx="154" cy="118" r="52" fill="#f6e8b0"/>
+  <path d="M150 257c45-67 111-70 139 0 14 35 20 79 20 111H122c0-32 9-76 28-111Z" fill="#315c50"/>
+  <circle cx="220" cy="178" r="31" fill="#f3c7ad"/>
+  <path d="M187 251c-46 24-65 55-82 103M252 251c49 24 68 55 86 103M185 316c-43 6-66 22-82 42M255 316c43 6 66 22 82 42" fill="none" stroke="#315c50" stroke-linecap="round" stroke-width="18"/>
+  <path d="M220 209v92M185 229c22 24 48 24 70 0" fill="none" stroke="#dce9df" stroke-linecap="round" stroke-width="9"/>
+  <path d="M169 177c18-34 75-39 103 0" fill="none" stroke="#315c50" stroke-linecap="round" stroke-width="13"/>
+  <text x="385" y="125" fill="#263735" font-family="Arial,sans-serif" font-size="35" font-weight="700">Gentle movement</text>
+  <text x="385" y="174" fill="#315c50" font-family="Arial,sans-serif" font-size="24">Breathe • stretch • rest</text>
+  <text x="385" y="238" fill="#52635c" font-family="Arial,sans-serif" font-size="20">Choose a comfortable pace.</text>
+  <text x="385" y="275" fill="#52635c" font-family="Arial,sans-serif" font-size="20">Stop if you feel pain, bleeding,</text>
+  <text x="385" y="307" fill="#52635c" font-family="Arial,sans-serif" font-size="20">dizziness or breathlessness.</text>
+  <rect x="385" y="350" width="265" height="58" rx="16" fill="#fffdf7" opacity=".8"/>
+  <text x="410" y="386" fill="#7a3522" font-family="Arial,sans-serif" font-size="18" font-weight="700">Ask your health worker first</text>
+</svg>
