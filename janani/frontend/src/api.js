@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 export async function apiRequest(path, options = {}) {
   const token = window.localStorage.getItem('janani_token');
@@ -8,7 +8,7 @@ export async function apiRequest(path, options = {}) {
   try {
     response = await fetch(`${API_URL}${path}`, { ...options, headers });
   } catch {
-    throw new Error('JANANI server is unavailable. Start the backend and confirm MySQL is running.');
+    throw new Error('Cannot reach the JANANI API. Make sure the backend is running and reload the page.');
   }
   const body = await response.json().catch(() => ({}));
   if (response.status === 401) {
